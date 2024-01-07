@@ -5,10 +5,10 @@ import { SigynInitializedRule, getConfig } from "@sigyn/config";
 // Import Internal Dependencies
 import { Datasource } from "../datasource";
 import { durationOrCronToDate } from "./cron";
-import { NotifierAlert } from "../notifier";
+import { RuleNotifierAlert } from "../notifiers/rules.notifier";
 
 export async function getLokiUrl(
-  rule: NotifierAlert["rule"],
+  rule: RuleNotifierAlert["rule"],
   config: SigynInitializedRule
 ): Promise<string> {
   const { loki } = getConfig();
