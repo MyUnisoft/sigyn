@@ -58,7 +58,7 @@ export class MockLogger {
   error(message: string) {
     console.log("❗", message);
   }
-  debug(message: string) {
-    console.log("🐛", message);
+  debug() {
+    return void 0;
   }
 }

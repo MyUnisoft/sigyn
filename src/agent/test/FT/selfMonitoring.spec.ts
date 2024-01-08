@@ -120,7 +120,6 @@ describe("Self-monitoring", () => {
   });
 
   it("should send alert as rule matches errorFilters", async() => {
-    initDB(kLogger, { databaseFilename: ".temp/test-agent.sqlite3" });
     const config = await initConfig(kRuleMatchErrorFiltersConfigLocation);
     const rule = new Rule(config.rules[0], { logger: kLogger });
     rule.init();
@@ -141,7 +140,6 @@ describe("Self-monitoring", () => {
   });
 
   it("should send alert as there are is no filter", async() => {
-    initDB(kLogger, { databaseFilename: ".temp/test-agent.sqlite3" });
     const config = await initConfig(kRuleNoFiltersConfigLocation);
     const rule = new Rule(config.rules[0], { logger: kLogger });
     rule.init();
@@ -162,7 +160,6 @@ describe("Self-monitoring", () => {
   });
 
   it("should have throttle", async() => {
-    initDB(kLogger, { databaseFilename: ".temp/test-agent.sqlite3" });
     const config = await initConfig(kRuleThrottleConfigLocation);
     const rule = new Rule(config.rules[0], { logger: kLogger });
     rule.init();
