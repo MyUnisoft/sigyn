@@ -4,7 +4,10 @@
   "description": "Grafana Loki Alerting Agent",
   "scripts": {
     "build": "npm run build --ws --if-present",
-    "test": "npm run test --ws --if-present"
+    "test": "npm run test --ws --if-present",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "keywords": [],
   "author": "GENTILHOMME Thomas <gentilhomme.thomas@gmail.com>",
@@ -28,6 +31,8 @@
     "glob": "^10.3.10",
     "tsup": "^8.0.2",
     "tsx": "^4.7.1",
-    "typescript": "^5.3.3"
-  }
+    "typescript": "^5.3.3",
+    "vitepress": "^1.0.1"
+  },
+  "type": "module"
 }

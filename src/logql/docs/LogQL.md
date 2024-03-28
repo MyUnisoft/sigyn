@@ -1,5 +1,18 @@
 # LogQL
 
+Individual LogQL parts (used in the parent class). You can also use them individually for separate needs.
+
+```
+{env="staging"} |= "req-xxx" | pattern `ok: <ok>` | ok = "true" | unpack
+^^^             ^^^          ^^^                  ^^^           ^^^
+StreamSelector  LineFilters  ParserExpression     LabelFilters  ParserExpression
+```
+
+- [StreamSelector](./StreamSelector.md)
+- [LineFilters](./LineFilters.md)
+- [LabelFilters](./LabelFilters.md)
+- [ParserExpression](./ParserExpression.md)
+
 ## API
 
 ### constructor

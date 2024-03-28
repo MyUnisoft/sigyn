@@ -18,13 +18,13 @@ Both can be setting up with an object as following:
 | `content.at.index` | `number` | ❌ | The index indicating where the new content should be added. Negative index works i.e. `-1` mean "before the last line" |
 | `content.at.value` | `string` | ❌ | The specific content line to be included at the provided index. |
 
-> ![IMPORTANT]
+> [!IMPORTANT]
 > Either one of `title` or `content` is **required**.
  
-> ![NOTE]
+> [!NOTE]
 > Extending templates can be nested: a **root template** can be extended from another **root template**.
 
-> ![NOTE]
+> [!NOTE]
 > When extending another template, `title` & `content` will simply replace the base template property. (except `content` if an object is provided which allow to update the extended template `content`)
 
 ## Variables

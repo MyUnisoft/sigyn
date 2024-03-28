@@ -57,7 +57,7 @@ Each item can be either a strict-equal match value or a RegExp.
 |-----------|----------|
 | `string[]` | ❌      |
 
-For instance, if you won't be notifier by malformed **LogQL** queries (**Bad Request** errors) then you can filter it:
+For instance, if you don't want to be notified by malformed **LogQL** queries (**Bad Request** errors) then you can filter it:
 
 ```json
 {

@@ -13,6 +13,7 @@
   <a href="https://github.com/MyUnisoft/sigyn/src/slack">
     <img src="https://img.shields.io/bundlephobia/min/@sigyn/slack?style=for-the-badge" alt="size">
   </a>
+<a>
     <img src="https://api.securityscorecards.dev/projects/github.com/MyUnisoft/sigyn/badge?style=for-the-badge" alt="ossf scorecard">
   </a>
   <a href="https://github.com/MyUnisoft/sigyn/tree/main/src/slack">
@@ -31,34 +32,19 @@
 
 This package is available in the Node Package Repository and can be easily installed with [npm](https://doc.npmjs.com/getting-started/what-is-npm) or [yarn](https://yarnpkg.com)
 
-```bash
-$ npm i @sigyn/slack
-# or
-$ yarn add @sigyn/slack
+::: code-group
+
+```sh [npm]
+npm install @sigyn/slack
 ```
-
-## 📚 Usage
-
-Add the Slack notifier to your Sigyn config:
-
-```json
-
-{
-  "notifiers": {
-    "@sigyn/slack": {
-      "webhookUrl": "https://hooks.slack.com/services/aaa/bbb"
-    },
-    ...
-  },
-  "rules": [
-    ...
-  ]
-}
+```sh [pnpm]
+pnpm install @sigyn/slack
 ```
-
-**Webhook URL**
-
-You can follow [this guide](https://api.slack.com/messaging/webhooks) for guidance on how to create a Slack webhook.
+```sh [yarn]
+yarn add @sigyn/slack
+```
+:::
+## Please see the [documentation here](https://myunisoft.github.io/sigyn/slack/installation).
 
 ## License
 MIT

@@ -20,7 +20,7 @@
     "dev": "npm run build -- --watch",
     "prepublishOnly": "npm run build",
     "test": "glob -c \"tsx -r dotenv/config --test-concurrency 1 --test\" \"./test/**/*.spec.ts\"",
-    "coverage": "c8 --all --src ./src -r html npm test",
+    "coverage": "c8 -r html npm test",
     "lint": "cross-env eslint src/**/*.ts"
   },
   "repository": {

@@ -133,3 +133,5 @@ dist
 .pnp.*
 
 src/**/temp
+docs/.vitepress/dist
+docs/.vitepress/cache

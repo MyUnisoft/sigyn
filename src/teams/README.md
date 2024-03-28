@@ -13,6 +13,7 @@
   <a href="https://github.com/MyUnisoft/sigyn/src/teams">
     <img src="https://img.shields.io/bundlephobia/min/@sigyn/teams?style=for-the-badge" alt="size">
   </a>
+<a>
     <img src="https://api.securityscorecards.dev/projects/github.com/MyUnisoft/sigyn/badge?style=for-the-badge" alt="ossf scorecard">
   </a>
   <a href="https://github.com/MyUnisoft/sigyn/tree/main/src/teams">
@@ -31,37 +32,20 @@
 
 This package is available in the Node Package Repository and can be easily installed with [npm](https://doc.npmjs.com/getting-started/what-is-npm) or [yarn](https://yarnpkg.com)
 
-```bash
-$ npm i @sigyn/teams
-# or
-$ yarn add @sigyn/teams
+::: code-group
+
+```sh [npm]
+npm install @sigyn/teams
 ```
-
-## 📚 Usage
-
-Add the Teams notifier to your Sigyn config:
-
-```json
-
-{
-  "notifiers": {
-    "@sigyn/teams": {
-      "webhookUrl": "https://biz.webhook.office.com/webhook2/xxx/yyy"
-    },
-    ...
-  },
-  "rules": [
-    ...
-  ]
-}
+```sh [pnpm]
+pnpm install @sigyn/teams
 ```
+```sh [yarn]
+yarn add @sigyn/teams
+```
+:::
 
-> [!IMPORTANT]
-> Unlike other notifiers, **Teams** require both a `title` and a `content` otherwise it will fail with a 400.
-
-**Webhook URL**
-
-You can follow [this guide](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook?tabs=dotnet#create-incoming-webhooks-1s) for guidance on how to create a Teams webhook.
+## Please see the [documentation here](https://myunisoft.github.io/sigyn/teams/installation).
 
 ## License
 MIT
