@@ -38,6 +38,6 @@
   "author": "GENTILHOMME Thomas <gentilhomme.thomas@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@myunisoft/httpie": "^4.0.1"
+    "@myunisoft/httpie": "^5.0.0"
   }
 }
