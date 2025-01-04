@@ -1,0 +1,36 @@
+{
+  "name": "@sigyn/demo-api",
+  "version": "1.0.0",
+  "description": "TBC",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --clean",
+    "start": "node ./dist/index.js",
+    "lint": "eslint src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MyUnisoft/sigyn.git",
+    "directory": "src/demo-api"
+  },
+  "bugs": {
+    "url": "https://github.com/MyUnisoft/sigyn/issues"
+  },
+  "homepage": "https://github.com/MyUnisoft/sigyn/blob/main/src/demo-api/README.md",
+  "files": [
+    "dist",
+    "data"
+  ],
+  "keywords": [],
+  "author": "GENTILHOMME Thomas <gentilhomme.thomas@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@myunisoft/loki": "^5.1.0",
+    "@ngneat/falso": "^7.2.0",
+    "fastify": "^4.7.0",
+    "testcontainers": "^10.16.0"
+  },
+  "type": "module"
+}

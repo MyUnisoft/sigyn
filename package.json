@@ -22,7 +22,8 @@
     "src/discord",
     "src/slack",
     "src/teams",
-    "src/pattern"
+    "src/pattern",
+    "src/demo-api"
   ],
   "devDependencies": {
     "@openally/config.eslint": "^1.1.0",
