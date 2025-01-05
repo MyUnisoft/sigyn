@@ -1,6 +1,10 @@
 // Import Third-party Dependencies
 import { randIp, randSuperhero } from "@ngneat/falso";
-import type { LokiIngestLogs, LogEntry } from "@myunisoft/loki";
+import type { LokiIngestLogs } from "@myunisoft/loki";
+
+// Import Internal Dependencies
+import * as httpSeeder from "./http.js";
+import { random } from "../utils.js";
 
 // CONSTANTS
 const kDefaultLogsCount = 100;
@@ -60,7 +64,7 @@ export class LogGenerator {
     this.labels = labels;
   }
 
-  randomMode() {
+  static randomMode() {
     const modes: Exclude<Mode, "random">[] = ["formated", "json"];
 
     return modes[Math.floor(Math.random() * modes.length)];
@@ -68,7 +72,7 @@ export class LogGenerator {
 
   refresh() {
     if (this.mode === "random") {
-      this.currentMode = this.randomMode();
+      this.currentMode = LogGenerator.randomMode();
     }
 
     this.timestamp = (this.startUnixEpoch + Math.floor(Math.random() * (this.endUnixEpoch - this.startUnixEpoch))).toString();
@@ -76,24 +80,26 @@ export class LogGenerator {
     this.reqId = crypto.randomUUID();
     this.method = Math.random() > 0.5 ? "POST" : "GET";
 
-    const { status, level } = this.randomStatus();
-    this.status = status;
-    this.level = level;
+    Object.assign(this, httpSeeder.randomStatus());
   }
 
   * generate() {
     while (this.count--) {
       this.refresh();
 
-      const firstHero = randSuperhero() as Superhero;
+      const hero = randSuperhero() as Superhero;
 
-      yield this.debug(firstHero);
-      yield* this.log(firstHero);
+      yield this.debug(hero);
+      yield* this.log(hero);
     }
   }
 
+  get baseHeader() {
+    return `${this.ip} <${this.reqId}>`;
+  }
+
   baseFormatted() {
-    return `${this.ip} <${this.reqId}> | ${this.method} /api/v1/superhero`;
+    return `${this.baseHeader} "${this.method} /api/v1/superhero"`;
   }
 
   baseJson() {
@@ -120,9 +126,13 @@ export class LogGenerator {
     };
   }
 
-  debug(hero: Superhero) {
+  debug(
+    hero: Superhero
+  ) {
     if (this.currentMode === "formated") {
-      return this.send(`${this.baseFormatted()} (realName:${hero.realName}|alterEgo:${hero.alterEgo}|company:${hero.company})`);
+      return this.send(
+        `${this.baseHeader} (realName:${hero.realName}|alterEgo:${hero.alterEgo}|company:${hero.company})`
+      );
     }
 
     const base = this.baseJson();
@@ -131,25 +141,9 @@ export class LogGenerator {
     return this.send(JSON.stringify({ ...base }));
   }
 
-  randomStatus() {
-    const statuses = [
-      200, 200, 200, 200, 200, 200, 200,
-      400, 400,
-      500
-    ];
-    const status = statuses[Math.floor(Math.random() * statuses.length)];
-
-    if (status === 500) {
-      return { status, level: "critical" };
-    }
-    else if (status === 400) {
-      return { status, level: "error" };
-    }
-
-    return { status, level: "info" };
-  }
-
-  * log(superhero: Superhero) {
+  * log(
+    hero: Superhero
+  ) {
     if (this.status === 500) {
       const error = new Error("Internal Server Error");
 
@@ -157,11 +151,12 @@ export class LogGenerator {
 
       return;
     }
-    else if (this.status === 400) {
-      const error = new Error(`Unknown superhero: ${superhero.realName}`);
+
+    if (this.status === 400) {
+      const error = new Error(`Unknown superhero: ${hero.realName}`);
 
       if (this.currentMode === "formated") {
-        yield this.send(`${this.baseFormatted()} [400](error: ${error.message})`);
+        yield this.send(`${this.baseFormatted()} 400 (error: ${error.message})`);
       }
       else {
         const { req, ...base } = this.baseJson();
@@ -174,7 +169,7 @@ export class LogGenerator {
     }
 
     if (this.currentMode === "formated") {
-      yield this.send(`${this.baseFormatted()} [200](count: ${random(1, 50)}|time: ${random(1, 1200)}ms)`);
+      yield this.send(`${this.baseFormatted()} 200 (time: ${random(1, 1200)}ms)`);
 
       return;
     }
@@ -182,8 +177,4 @@ export class LogGenerator {
     const base = this.baseJson();
     Object.assign(base, { res: { status: 200, count: random(1, 50), time: random(1, 1200) } });
   }
-}
-
-function random(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
