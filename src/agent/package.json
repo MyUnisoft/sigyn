@@ -45,7 +45,7 @@
     "@myunisoft/loki": "^5.1.0",
     "@openally/result": "^1.3.0",
     "better-sqlite3": "^11.7.0",
-    "cron-parser": "^4.9.0",
+    "cron-parser": "^5.0.1",
     "croner": "^9.0.0",
     "dayjs": "^1.11.13",
     "dotenv": "^16.4.7",
